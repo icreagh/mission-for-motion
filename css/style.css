@@ -1,0 +1,840 @@
+/*
+	Mission For Motion - Custom Stylesheet
+*/
+
+/* ---------------------------------------------------------
+   1. GLOBAL & TYPOGRAPHY
+------------------------------------------------------------ */
+
+:root {
+	--primary-blue: #005A9C;
+	--accent-orange: #FFA500;
+	--accent-yellow: #FFD700;
+	--dark-text: #333333;
+	--light-text: #666666;
+	--white: #FFFFFF;
+	--light-gray-bg: #f7f7f7;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.7;
+	color: var(--light-text);
+	background: var(--white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: var(--dark-text);
+	margin: 0 0 20px 0;
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 2.5em; }
+
+a {
+	color: var(--accent-orange);
+	transition: all 0.3s ease;
+}
+a:hover, a:focus {
+	color: var(--primary-blue);
+	text-decoration: none;
+}
+
+/* ---------------------------------------------------------
+   2. BUTTONS & UTILITIES
+------------------------------------------------------------ */
+
+.btn {
+	margin-right: 4px;
+	margin-bottom: 4px;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	border-radius: 4px;
+	padding: 12px 28px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: all 0.3s ease;
+}
+
+.btn-primary {
+	background: var(--accent-orange);
+	color: var(--white);
+	border: 2px solid var(--accent-orange);
+}
+.btn-primary:hover, .btn-primary:focus {
+	background: transparent;
+	color: var(--accent-orange);
+	border-color: var(--accent-orange);
+	transform: translateY(-2px);
+}
+
+.btn-secondary {
+	background: var(--white);
+	color: var(--primary-blue);
+	border: 2px solid var(--white);
+}
+.btn-secondary:hover, .btn-secondary:focus {
+	background: transparent;
+	color: var(--white);
+	border-color: var(--white);
+	transform: translateY(-2px);
+}
+
+.content-section {
+	padding: 50px 0;
+}
+
+.heading-section .section-subtitle {
+	font-size: 18px;
+	max-width: 700px;
+	margin: 0 auto 30px auto;
+	line-height: 1.8;
+}
+
+.fh5co-section-gray {
+	background: var(--light-gray-bg);
+}
+
+/* ---------------------------------------------------------
+   HERO & HEADER STYLES
+------------------------------------------------------------ */
+
+/* The new parent container */
+#hero-header {
+    position: relative;
+    height: 100vh; /* Make the section fill the entire screen height */
+    
+    display: flex; /* Using flexbox to help position the hero content */
+    flex-direction: column;
+}
+
+.slideshow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensures it's at the very back */
+}
+
+.slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents image stretching */
+    
+    /* --- Fade Effect --- */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slideshow-image.is-visible {
+    opacity: 1; /* This class makes the image visible */
+}
+
+/* The new light gray overlay */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* A very light gray with 20% opacity. Adjust as needed. */
+    background-color: rgba(174, 166, 166, 0.692); 
+    z-index: 1; /* Sits above the images */
+}
+
+/* ---------------------------------------------------------
+   3. HEADER & NAVIGATION (REVISED FOR TRANSLUCENCY)
+------------------------------------------------------------ */
+
+#fh5co-header-section {
+	position: sticky; /* Lifts the header to float on top */
+	top: 0;
+	left: 0;
+	width: 100%;
+	max-width: 100%;
+	z-index: 100; /* Ensures header is above other content */
+	background: none; /* Removed solid background for translucency */
+	box-shadow: none; /* Removed shadow for a cleaner look */
+	padding: 10px 0;
+    
+    /* --- Initial State (Transparent) --- */
+    background-color: transparent; 
+    
+    /* --- The Fade Effect --- */
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+/* --- The Scrolled State (with temporary background color) --- */
+#fh5co-header-section.scrolled {
+    background-color: rgba(0, 90, 156, 0.95); /* Opaque blue background */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.nav-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo img {
+	max-height: 75px;
+	width: auto;
+}
+
+#fh5co-logo {
+	display: none;
+}
+
+/* ---------------------------------------------------------
+   CLEAN NAVIGATION LINK STYLES
+------------------------------------------------------------ */
+
+/* --- Initial State (Black text) --- */
+#fh5co-primary-menu li a {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: black;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* --- Initial Hover State --- */
+#fh5co-primary-menu li a:hover {
+	color: var(--accent-orange);
+    border-bottom-color: var(--accent-orange);
+}
+
+/* --- Initial Active Page State --- */
+#fh5co-primary-menu li.active > a {
+	color: var(--accent-orange);
+    border-bottom-color: var(--accent-orange);
+}
+
+/* --- Scrolled State (White text) --- */
+#fh5co-header-section.scrolled #fh5co-primary-menu li a {
+    color: rgba(255,255,255,0.85);
+    border-bottom-color: transparent;
+}
+
+/* --- Scrolled Hover State --- */
+#fh5co-header-section.scrolled #fh5co-primary-menu li a:hover {
+    color: white;
+    border-bottom-color: var(--accent-yellow);
+}
+
+/* --- Scrolled Active Page State --- */
+#fh5co-header-section.scrolled #fh5co-primary-menu li.active > a {
+	color: var(--accent-yellow);
+    border-bottom-color: var(--accent-yellow);
+}
+
+
+/* ---------------------------------------------------------
+   4. HERO SECTION (REVISED FOR FULL VIEWPORT)
+------------------------------------------------------------ */
+.fh5co-hero {
+	height: 100vh; /* Ensures the hero section fills the entire screen height */
+	padding: 0; /* Removed padding to be exactly 100vh */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1; /* Allows the hero to take up available space */
+	position: relative; /* Lifts the hero content */
+    z-index: 2; /* Places it above the overlay */
+}
+
+.hero-brand-name {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--accent-yellow);
+    font-size: 5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.fh5co-hero .desc h3 { 
+	font-size: 2rem;
+	font-weight: 700;
+	color: var(--white);
+    margin-bottom: 30px;
+}
+
+.fh5co-hero .fh5co-overlay {
+	/* This overlay already provides the translucent effect for the hero */
+	background: rgba(0, 0, 0, 0.5); 
+}
+
+/* ---------------------------------------------------------
+   IMPACT SECTION STYLES
+------------------------------------------------------------ */
+
+.impact-container {
+    position: relative;
+    margin-top: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-height: 500px;     /* This controls the height of the entire section */
+
+}
+
+.impact-map {
+    display: block;
+    width: 100%;
+    
+    /* ADDED: These ensure the image fills the new height without distortion */
+    height: 100%;
+    object-fit: cover; 
+	object-position: center 10% !important; 
+}
+
+/* The dark blue translucent overlay */
+.impact-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 90, 156, 0.75); /* Translucent primary blue */
+    z-index: 1;
+}
+
+/* Container for the stats that sits on top of everything */
+.impact-stats {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    color: white;
+    
+    /* This lays out the 3 stat items evenly */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    display: block;
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .impact-stats {
+        flex-direction: column; /* Stack the stats vertically */
+    }
+    .stat-number {
+        font-size: 3rem;
+    }
+    .stat-label {
+        font-size: 1rem;
+    }
+}
+/* ---------------------------------------------------------
+   5. TEAM SECTION
+------------------------------------------------------------ */
+
+/* The main card container */
+.team-card {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* A subtle shadow to lift the card */
+    border-radius: 8px;
+    overflow: hidden; /* Important for keeping the image corners rounded */
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+.team-card:hover {
+     transform: translateY(-8px); /* Lifts the card up on hover */
+     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* The top part of the card with the image */
+.team-image-container {
+    height: 280px; /* This sets a uniform height for all images */
+    position: relative;
+    overflow: hidden;
+    background-color: #e0e0e0; /* A placeholder color while images load */
+}
+
+.team-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This makes the image fill the container without stretching */
+    transition: transform 0.4s ease;
+}
+
+/* The bottom part with the white background for text */
+.team-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.team-info h3 {
+    font-size: 20px;
+	color: var(--primary-blue);
+	margin-bottom: 5px;
+    font-weight: 700;
+}
+.team-info p {
+    font-style: italic;
+	font-size: 14px;
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* The hover overlay for the bio */
+.team-bio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 90, 156, 0.85);
+    color: white;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.team-card:hover .team-image-container img {
+    transform: scale(1.05);
+}
+
+.team-card:hover .team-bio-overlay {
+    opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   6. DONATE SECTION
+------------------------------------------------------------ */
+
+.donate-section {
+	background-color: var(--primary-blue);
+}
+.donate-section h2,
+.donate-section .section-subtitle {
+	color: var(--white);
+}
+
+.donation-portal-placeholder {
+	background: rgba(255,255,255,0.1);
+	padding: 40px;
+	border-radius: 8px;
+	margin-top: 30px;
+}
+.goal-tracker {
+	color: var(--white);
+	margin-bottom: 30px;
+}
+.progress-bar-container {
+	background: rgba(0,0,0,0.2);
+	border-radius: 30px;
+	height: 30px;
+	margin: 10px 0;
+	overflow: hidden;
+}
+.progress-bar {
+	background: var(--accent-yellow);
+	height: 100%;
+	border-radius: 30px;
+	text-align: right;
+	padding-right: 15px;
+	box-sizing: border-box;
+}
+.progress-bar span {
+	line-height: 30px;
+	font-weight: bold;
+	color: var(--dark-text);
+}
+
+
+/* ---------------------------------------------------------
+   7. GALLERY & EVENTS
+------------------------------------------------------------ */
+/* ---------------------------------------------------------
+   GALLERY DISSOLVING BACKGROUND & BLUR
+------------------------------------------------------------ */
+
+/* Make the gallery section a positioning container */
+#gallery {
+    position: relative;
+    overflow: hidden; /* Important for containing the absolute background */
+    background: none; /* Remove the old light gray background */
+	padding: 30px 5px; 
+
+}
+
+.background-slideshow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits behind the content */
+}
+
+.background-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out; /* Slower, more subtle fade */
+}
+
+.background-slide.is-visible-bg {
+    opacity: 1;
+}
+
+/* The "Glass" Panel for the Content */
+#gallery .container {
+    position: relative;
+    z-index: 2; /* Sits on top of the background */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* The blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle edge */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+/* ---------------------------------------------------------
+   PHOTO GALLERY SLIDER (3-IMAGE CAROUSEL)
+------------------------------------------------------------ */
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    display: flex;
+    /* This negative margin compensates for the padding on the first and last slides */
+    margin: 0 -10px; 
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    /* Each slide takes up a third of the container width */
+    min-width: calc(100% / 3);
+    box-sizing: border-box;
+    /* Adds a 20px gap between slides */
+    padding: 0 10px;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px; /* Sets a uniform height for all images */
+    object-fit: cover; /* Prevents stretching */
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Slider Navigation Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: var(--dark-text);
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 25px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background-color: white;
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Placeholder button style (no changes) */
+.gallery-view-all-btn {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.event-item {
+	border-left: 3px solid var(--accent-orange);
+	padding-left: 20px;
+	margin-bottom: 30px;
+}
+.event-item h3 {
+	color: var(--primary-blue);
+}
+
+/* ---------------------------------------------------------
+   8. CONTACT FORM
+------------------------------------------------------------ */
+#contact .form-control {
+	border-radius: 4px;
+	box-shadow: none;
+	border: 2px solid #ddd;
+	padding: 20px 15px;
+}
+#contact .form-control:focus {
+	border-color: var(--accent-orange);
+}
+#contact {
+	background-color: #FFFFFF;
+}
+
+/* ---------------------------------------------------------
+   9. FOOTER
+------------------------------------------------------------ */
+#footer {
+	background: var(--dark-text);
+	color: rgba(255,255,255,0.6);
+}
+#footer .fh5co-social-icons a {
+	color: var(--white);
+}
+#footer .fh5co-social-icons a:hover {
+	color: var(--accent-yellow);
+}
+#footer a {
+	color: var(--accent-yellow);
+}
+
+
+/* ---------------------------------------------------------
+   10. RESPONSIVE STYLES
+------------------------------------------------------------ */
+@media screen and (max-width: 992px) {
+	.team-card {
+		margin-bottom: 30px;
+	}
+	#fh5co-primary-menu ul li a.btn {
+		display: none; /* Hide donate button on smaller nav */
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.fh5co-hero {
+		height: 500px;
+	}
+	.fh5co-hero .desc h1 {
+		font-size: 32px;
+	}
+	h1 { font-size: 2.5em; }
+	h2 { font-size: 2em; }
+	.content-section {
+		padding: 30px 0;
+	}
+}
+
+/* ---------------------------------------------------------
+   11. OFF-CANVAS & MOBILE MENU STYLES
+------------------------------------------------------------ */
+
+#offcanvas-menu {
+	display: none; /* Hide by default on desktop */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 275px;
+	height: 100%;
+	background: #222;
+	z-index: 1001;
+	overflow-y: auto;
+	padding: 30px;
+}
+
+#offcanvas-menu ul {
+	padding: 0;
+	margin: 0;
+}
+
+#offcanvas-menu ul li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#offcanvas-menu ul li > a {
+	font-size: 18px;
+	padding: 10px 0;
+	display: block;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+#offcanvas-menu ul li > a:hover {
+	color: var(--accent-orange);
+}
+
+#offcanvas-menu ul li.active > a {
+	color: var(--white);
+}
+
+/* Style for the body when the mobile menu is active */
+body.fh5co-offcanvas {
+	overflow-x: hidden;
+}
+body.fh5co-offcanvas #fh5co-page {
+	-webkit-transform: translateX(275px);
+	-moz-transform: translateX(275px);
+	-ms-transform: translateX(275px);
+	-o-transform: translateX(275px);
+	transform: translateX(275px);
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Styles applied to the main navigation menu within the header */
+@media screen and (max-width: 992px) {
+	/* Hide the desktop menu links */
+	#fh5co-menu-wrap {
+		display: none;
+	}
+	/* Show the hamburger toggle */
+	.fh5co-nav-toggle {
+		display: block;
+	}
+}
+
+/* ---------------------------------------------------------
+   ACCORDION STYLES
+------------------------------------------------------------ */
+.accordion-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 10px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #f7f7f7;
+}
+
+/* Icon Styling (+/-) */
+.accordion-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.4s ease;
+}
+.accordion-icon::before,
+.accordion-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--accent-orange);
+    transition: transform 0.4s ease;
+}
+.accordion-icon::before { /* Horizontal bar */
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    margin-top: -1px;
+}
+.accordion-icon::after { /* Vertical bar */
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    margin-left: -1px;
+}
+
+/* Content Panel Styling & Animation */
+.accordion-content {
+    max-height: 0; /* Initially hidden */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    padding: 0 15px;
+}
+.accordion-content p {
+    margin: 15px 0;
+}
+
+/* Active State (when a dropdown is open) */
+.accordion-item.active .accordion-header {
+    color: var(--accent-orange);
+}
+.accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+}
+.accordion-item.active .accordion-icon::after {
+    transform: rotate(90deg); /* Hides vertical bar to make a minus sign */
+}
+.accordion-item.active .accordion-content {
+    max-height: 500px; /* Animate to this height */
+    padding: 10px 15px;
+}
